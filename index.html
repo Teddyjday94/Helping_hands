@@ -3,145 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Helping Hands — Professional Lawn Care</title>
+<title>Helping Hands — Lawn Care Superheroes</title>
+<link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bangers&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --green: #1A3D2B; --green-mid: #245438;
-    --gold: #C8A84B; --gold-light: #E8D48B;
-    --white: #FFFFFF; --offwhite: #F7F8F6;
-    --gray: #E8EAE6; --mid: #6B7568;
-    --dark: #1C1C1C; --red: #C0392B;
+    --black: #0B0C08;
+    --charcoal: #14170F;
+    --charcoal2: #1D2216;
+    --lime: #B6E233;
+    --lime-deep: #8FBE24;
+    --yellow: #FCEB3A;
+    --orange: #FF9F35;
+    --teal: #3FB6D6;
+    --cream: #FBF8EC;
+    --cream2: #F2EED9;
+    --ink: #14170F;
+    --mid: #5B6152;
+    --red: #E24E3D;
+    --white: #FFFFFF;
   }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(26,61,43,0.96); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 64px; }
-  .nav-logo { display: flex; gap: 0.75rem; align-items: center; font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.1rem; letter-spacing: 0.02em; }
-  .nav-logo span { color: var(--gold); }
-  .logo-img { width: 48px; height: 48px; object-fit: contain; border-radius: 6px; box-shadow: 0 6px 18px rgba(0,0,0,0.35); transform-origin: center; animation: float 6s ease-in-out infinite; }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.875rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--gold); }
-  .nav-cta { background: var(--gold); color: var(--dark); padding: 0.5rem 1.25rem; border-radius: 4px; font-size: 0.875rem; font-weight: 600; text-decoration: none; letter-spacing: 0.03em; transition: background 0.2s; }
-  .nav-cta:hover { background: var(--gold-light); }
-  .hero { min-height: 100vh; background: linear-gradient(160deg, rgba(26,61,43,0.88) 0%, rgba(26,61,43,0.70) 60%, rgba(26,61,43,0.50) 100%), url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80') center/cover no-repeat; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 5vw; padding-top: 64px; overflow: hidden; }
-  .owner-banner { background: linear-gradient(90deg, rgba(200,168,75,0.12), rgba(200,168,75,0.06)); color: var(--gold-light); border: 1px solid rgba(200,168,75,0.14); padding: 0.6rem 0.9rem; border-radius: 999px; font-weight: 600; letter-spacing: 0.02em; margin-bottom: 1rem; display: inline-flex; gap: 0.6rem; align-items: center; animation: slideIn 700ms ease both; }
-  .owner-banner strong { color: var(--gold); }
-  .hero-eyebrow { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); color: var(--white); line-height: 1.1; max-width: 700px; margin-bottom: 1.5rem; }
-  .hero h1 em { color: var(--gold); font-style: normal; }
+  body { font-family: 'Inter', sans-serif; color: var(--ink); background: var(--cream); overflow-x: hidden; }
+  ::selection { background: var(--lime); color: var(--black); }
+
+  /* ===== Halftone / texture helpers ===== */
+  .halftone { background-image: radial-gradient(rgba(255,255,255,0.09) 1.4px, transparent 1.4px); background-size: 12px 12px; }
+  .halftone-dark { background-image: radial-gradient(rgba(11,12,8,0.08) 1.6px, transparent 1.6px); background-size: 13px 13px; }
+
+  /* ===== Nav ===== */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(11,12,8,0.94); backdrop-filter: blur(10px); border-bottom: 3px solid var(--lime); display: flex; align-items: center; justify-content: space-between; padding: 0 5vw; height: 84px; }
+  .nav-logo { display: flex; gap: 0.9rem; align-items: center; font-family: 'Archivo Black', sans-serif; color: var(--white); font-size: 1.15rem; letter-spacing: 0.01em; text-transform: uppercase; }
+  .nav-logo span { color: var(--lime); }
+  .logo-img { width: 68px; height: 68px; object-fit: contain; border-radius: 50%; background: radial-gradient(circle, rgba(182,226,51,0.18), transparent 70%); padding: 4px; animation: float 6s ease-in-out infinite; filter: drop-shadow(0 0 14px rgba(182,226,51,0.35)); }
+  .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.82); text-decoration: none; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; background: var(--lime); transition: width 0.2s; }
+  .nav-links a:hover { color: var(--lime); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { background: var(--lime); color: var(--black); padding: 0.65rem 1.4rem; border-radius: 999px; font-size: 0.82rem; font-weight: 800; text-decoration: none; letter-spacing: 0.03em; text-transform: uppercase; transition: transform 0.2s, background 0.2s; box-shadow: 0 4px 0 var(--lime-deep); }
+  .nav-cta:hover { background: var(--yellow); transform: translateY(-2px); box-shadow: 0 6px 0 var(--lime-deep); }
+  .nav-cta:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--lime-deep); }
+
+  /* ===== Hero ===== */
+  .hero { position: relative; min-height: 100vh; background: var(--black); display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 0 5vw; padding-top: 84px; overflow: hidden; }
+  .hero-rays { position: absolute; top: 50%; left: 50%; width: 2600px; height: 2600px; transform: translate(-50%,-50%); background: repeating-conic-gradient(from 0deg, rgba(252,235,58,0.10) 0deg 6deg, transparent 6deg 18deg); animation: spin 90s linear infinite; pointer-events: none; }
+  .hero-glow { position: absolute; top: 50%; left: 78%; width: 900px; height: 900px; transform: translate(-50%,-50%); background: radial-gradient(circle, rgba(182,226,51,0.22), rgba(63,182,214,0.10) 45%, transparent 72%); filter: blur(10px); pointer-events: none; }
+  .hero-emblem { position: absolute; right: 6vw; top: 50%; transform: translateY(-50%); width: min(38vw, 480px); opacity: 0.95; filter: drop-shadow(0 0 40px rgba(182,226,51,0.25)); animation: float 7s ease-in-out infinite; }
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+  .owner-banner { position: relative; background: var(--yellow); color: var(--black); border: 3px solid var(--black); padding: 0.85rem 1.15rem; border-radius: 10px; font-weight: 700; letter-spacing: 0.01em; margin-bottom: 1.5rem; display: inline-flex; gap: 0.65rem; align-items: flex-start; box-shadow: 6px 6px 0 var(--lime); animation: slideIn 700ms ease both; }
+  .owner-banner span.badge-emoji { font-size: 1.3rem; line-height: 1; }
+  .owner-banner strong { color: var(--black); font-family: 'Archivo Black', sans-serif; font-size: 0.95em; }
+  .hero-eyebrow { font-family: 'Bangers', cursive; font-size: 1.2rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.75rem; }
+  .hero h1 { font-family: 'Archivo Black', sans-serif; font-size: clamp(2.6rem, 6vw, 4.7rem); color: var(--white); line-height: 1.05; max-width: 700px; margin-bottom: 1.5rem; text-transform: uppercase; }
+  .hero h1 em { font-style: normal; color: var(--lime); -webkit-text-stroke: 1.5px var(--black); }
   .hero h1, .hero p { transform: translateY(12px); opacity: 0; animation: fadeInUp 900ms ease forwards; }
   .hero h1 { animation-delay: 200ms; }
   .hero p { animation-delay: 420ms; }
-  .hero p { color: rgba(255,255,255,0.82); font-size: 1.1rem; font-weight: 300; max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; }
+  .hero p { color: rgba(255,255,255,0.78); font-size: 1.12rem; font-weight: 300; max-width: 480px; line-height: 1.7; margin-bottom: 2.5rem; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary { background: var(--gold); color: var(--dark); padding: 0.875rem 2rem; border-radius: 4px; font-size: 0.9rem; font-weight: 600; text-decoration: none; letter-spacing: 0.03em; transition: background 0.2s; display: inline-block; }
-  .btn-primary:hover { background: var(--gold-light); }
-  .btn-outline { border: 1.5px solid rgba(255,255,255,0.5); color: var(--white); padding: 0.875rem 2rem; border-radius: 4px; font-size: 0.9rem; font-weight: 500; text-decoration: none; letter-spacing: 0.03em; transition: border-color 0.2s, color 0.2s; display: inline-block; }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-  .trust-bar { background: var(--green); display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 1.25rem 5vw; }
-  .trust-item { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.85); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
-  .trust-item svg { color: var(--gold); flex-shrink: 0; }
-  section { padding: 6rem 5vw; }
-  .section-label { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 0.75rem; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.75rem); color: var(--green); line-height: 1.2; margin-bottom: 1rem; }
-  .section-sub { color: var(--mid); font-size: 1rem; font-weight: 300; line-height: 1.7; max-width: 520px; }
-  .services { background: var(--offwhite); }
+  .btn-primary { background: var(--lime); color: var(--black); padding: 1rem 2.1rem; border-radius: 999px; font-size: 0.92rem; font-weight: 800; text-decoration: none; letter-spacing: 0.02em; text-transform: uppercase; transition: transform 0.15s, box-shadow 0.15s; display: inline-block; box-shadow: 0 5px 0 var(--lime-deep); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 0 var(--lime-deep); }
+  .btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--lime-deep); }
+  .btn-outline { border: 2.5px solid rgba(255,255,255,0.6); color: var(--white); padding: 0.95rem 2.1rem; border-radius: 999px; font-size: 0.92rem; font-weight: 700; text-decoration: none; letter-spacing: 0.02em; text-transform: uppercase; transition: border-color 0.2s, color 0.2s, background 0.2s; display: inline-block; }
+  .btn-outline:hover { border-color: var(--teal); color: var(--black); background: var(--teal); }
+
+  .trust-bar { position: relative; background: var(--charcoal); border-top: 3px solid var(--lime); border-bottom: 3px solid var(--lime); display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; padding: 1.4rem 5vw; }
+  .trust-item { display: flex; align-items: center; gap: 0.6rem; color: rgba(255,255,255,0.9); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+  .trust-item svg { color: var(--yellow); flex-shrink: 0; }
+
+  section { padding: 6.5rem 5vw; }
+  .section-label { font-family: 'Bangers', cursive; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.6rem; }
+  .section-title { font-family: 'Archivo Black', sans-serif; font-size: clamp(1.9rem, 3.5vw, 2.9rem); color: var(--ink); line-height: 1.15; margin-bottom: 1rem; text-transform: uppercase; }
+  .section-sub { color: var(--mid); font-size: 1rem; font-weight: 400; line-height: 1.7; max-width: 520px; }
+
+  /* ===== Services ===== */
+  .services { background: var(--cream); position: relative; }
   .services-header { margin-bottom: 3rem; }
   .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-  .service-card { background: var(--white); border-radius: 8px; padding: 2rem 1.75rem; border: 1px solid var(--gray); transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s; cursor: pointer; position: relative; }
-  .service-card:hover { box-shadow: 0 8px 32px rgba(26,61,43,0.12); transform: translateY(-3px); border-color: var(--gold); }
+  .service-card { background: var(--white); border-radius: 14px; padding: 2.1rem 1.75rem; border: 3px solid var(--ink); transition: box-shadow 0.2s, transform 0.2s; cursor: pointer; position: relative; box-shadow: 6px 6px 0 var(--ink); }
+  .service-card:nth-child(1) .service-icon { background: var(--lime); }
+  .service-card:nth-child(2) .service-icon { background: var(--orange); }
+  .service-card:nth-child(3) .service-icon { background: var(--teal); }
+  .service-card:nth-child(4) .service-icon { background: var(--yellow); }
+  .service-card:hover { box-shadow: 9px 9px 0 var(--lime); transform: translate(-3px,-3px); }
   .service-card.reveal { transform: translateY(12px); opacity: 0; transition: transform 420ms cubic-bezier(.2,.9,.3,1), opacity 420ms ease; }
   .service-card.reveal.show { transform: translateY(0); opacity: 1; }
-  .service-card .book-hint { position: absolute; bottom: 1.25rem; right: 1.25rem; font-size: 0.72rem; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; opacity: 0; transition: opacity 0.2s; }
+  .service-card:hover.reveal.show { transform: translate(-3px,-3px); }
+  .service-card .book-hint { position: absolute; bottom: 1.25rem; right: 1.25rem; font-size: 0.72rem; font-weight: 800; color: var(--ink); text-transform: uppercase; letter-spacing: 0.08em; opacity: 0; transition: opacity 0.2s; }
   .service-card:hover .book-hint { opacity: 1; }
-  .service-icon { width: 48px; height: 48px; border-radius: 8px; background: var(--green); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
-  .service-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--dark); margin-bottom: 0.6rem; }
+  .service-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; border: 3px solid var(--ink); transform: rotate(-4deg); }
+  .service-icon svg { stroke: var(--ink) !important; }
+  .service-card h3 { font-family: 'Archivo Black', sans-serif; font-size: 1.02rem; color: var(--ink); margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.01em; }
   .service-card p { font-size: 0.875rem; color: var(--mid); line-height: 1.6; }
-  .service-price { margin-top: 1.25rem; font-size: 0.85rem; font-weight: 600; color: var(--green); letter-spacing: 0.02em; }
-  .why { background: var(--white); }
+  .service-price { margin-top: 1.25rem; font-size: 0.85rem; font-weight: 800; color: var(--lime-deep); letter-spacing: 0.02em; }
+
+  /* ===== Why ===== */
+  .why { background: var(--ink); position: relative; }
+  .why .section-title, .why .section-sub { color: var(--white); }
+  .why .section-sub { color: rgba(255,255,255,0.65); }
   .why-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .why-img { border-radius: 8px; overflow: hidden; aspect-ratio: 4/5; position: relative; }
+  .why-img { border-radius: 14px; overflow: hidden; aspect-ratio: 4/5; position: relative; border: 3px solid var(--lime); box-shadow: 8px 8px 0 var(--lime); }
   .why-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .why-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
-  .why-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.92rem; color: var(--dark); line-height: 1.6; }
-  .why-check { width: 20px; height: 20px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-  .booking { background: var(--offwhite); }
+  .why-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 1.1rem; }
+  .why-list li { display: flex; align-items: flex-start; gap: 0.85rem; font-size: 0.94rem; color: rgba(255,255,255,0.9); line-height: 1.6; }
+  .why-check { width: 24px; height: 24px; border-radius: 50%; background: var(--lime); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .why-check svg { stroke: var(--ink) !important; }
+
+  /* ===== Booking ===== */
+  .booking { background: var(--cream2); }
   .booking-inner { display: grid; grid-template-columns: 1fr 1.3fr; gap: 4rem; align-items: start; }
-  .avail-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); font-weight: 600; margin-bottom: 0.75rem; }
+  .avail-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); font-weight: 700; margin-bottom: 0.75rem; }
   .avail-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-bottom: 1rem; }
-  .avail-day { border-radius: 6px; padding: 0.55rem 0.25rem; text-align: center; font-size: 0.72rem; font-weight: 600; border: 1.5px solid transparent; transition: transform 0.15s, box-shadow 0.15s; }
+  .avail-day { border-radius: 8px; padding: 0.6rem 0.25rem; text-align: center; font-size: 0.72rem; font-weight: 700; border: 2px solid transparent; transition: transform 0.15s, box-shadow 0.15s; }
   .avail-day .day-name { display: block; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; opacity: 0.7; }
-  .avail-day .day-num { display: block; font-size: 1rem; font-weight: 700; }
+  .avail-day .day-num { display: block; font-family: 'Archivo Black', sans-serif; font-size: 1.05rem; }
   .avail-day .day-slots { display: block; font-size: 0.65rem; margin-top: 3px; }
-  .avail-day.open { background: #E8F5EE; border-color: #A8D5B8; color: var(--green); cursor: pointer; }
-  .avail-day.limited { background: #FFF8E1; border-color: #F5C842; color: #7A5800; cursor: pointer; }
-  .avail-day.full { background: #FDECEA; border-color: #E0A09A; color: var(--red); cursor: not-allowed; }
-  .avail-day.past { background: var(--gray); color: #aaa; border-color: transparent; opacity: 0.5; cursor: not-allowed; }
-  .avail-day.open:hover, .avail-day.limited:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(26,61,43,0.15); }
-  .avail-day.selected { outline: 2.5px solid var(--green); outline-offset: 2px; box-shadow: 0 4px 14px rgba(26,61,43,0.2); }
+  .avail-day.open { background: #E4F5C2; border-color: var(--lime); color: #4A6B0F; cursor: pointer; }
+  .avail-day.limited { background: #FFE9CC; border-color: var(--orange); color: #9A4E00; cursor: pointer; }
+  .avail-day.full { background: #FBDAD5; border-color: var(--red); color: #9E2E20; cursor: not-allowed; }
+  .avail-day.past { background: #E7E4D5; color: #a9a58f; border-color: transparent; opacity: 0.6; cursor: not-allowed; }
+  .avail-day.open:hover, .avail-day.limited:hover { transform: translateY(-3px); box-shadow: 0 6px 14px rgba(20,23,15,0.18); }
+  .avail-day.selected { outline: 3px solid var(--ink); outline-offset: 2px; box-shadow: 0 4px 14px rgba(20,23,15,0.25); }
   .avail-legend { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
-  .leg { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--mid); }
+  .leg { display: flex; align-items: center; gap: 5px; font-size: 0.72rem; color: var(--mid); font-weight: 600; }
   .leg-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .leg-dot.open { background: #5cb87a; }
-  .leg-dot.limited { background: #F5C842; }
+  .leg-dot.open { background: var(--lime); }
+  .leg-dot.limited { background: var(--orange); }
   .leg-dot.full { background: var(--red); }
   .avail-hint { font-size: 0.75rem; color: var(--mid); margin-top: 0.5rem; font-style: italic; }
-  .booking-form { background: var(--white); border-radius: 10px; padding: 2.5rem; border: 1px solid var(--gray); transition: border-color 0.3s; }
-  .booking-form.highlighted { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,168,75,0.12); }
-  .booking-form h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--green); margin-bottom: 0.4rem; }
+  .booking-form { background: var(--white); border-radius: 16px; padding: 2.5rem; border: 3px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); transition: border-color 0.3s, box-shadow 0.3s; }
+  .booking-form.highlighted { border-color: var(--lime); box-shadow: 8px 8px 0 var(--lime); }
+  .booking-form h3 { font-family: 'Archivo Black', sans-serif; font-size: 1.35rem; color: var(--ink); margin-bottom: 0.4rem; text-transform: uppercase; }
   .booking-form .form-sub { font-size: 0.85rem; color: var(--mid); margin-bottom: 1.5rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-  .form-group label { font-size: 0.78rem; font-weight: 600; color: var(--dark); letter-spacing: 0.04em; text-transform: uppercase; }
-  .form-group input, .form-group select, .form-group textarea { border: 1.5px solid var(--gray); border-radius: 5px; padding: 0.65rem 0.9rem; font-size: 0.9rem; font-family: 'Inter', sans-serif; color: var(--dark); background: var(--white); transition: border-color 0.2s; outline: none; width: 100%; }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green); }
+  .form-group label { font-size: 0.75rem; font-weight: 800; color: var(--ink); letter-spacing: 0.05em; text-transform: uppercase; }
+  .form-group input, .form-group select, .form-group textarea { border: 2px solid #DEDBC7; border-radius: 8px; padding: 0.68rem 0.9rem; font-size: 0.9rem; font-family: 'Inter', sans-serif; color: var(--ink); background: var(--cream); transition: border-color 0.2s; outline: none; width: 100%; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--lime-deep); background: var(--white); }
   .form-group textarea { resize: vertical; min-height: 80px; }
-  .service-prefilled { border-color: var(--gold) !important; background: #FFFBF0 !important; }
+  .service-prefilled { border-color: var(--orange) !important; background: #FFF6EA !important; }
   .timeslot-section { margin-bottom: 1rem; }
-  .timeslot-label { font-size: 0.78rem; font-weight: 600; color: var(--dark); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
-  .timeslot-date-banner { background: #E8F5EE; border: 1px solid #A8D5B8; border-radius: 6px; padding: 0.55rem 0.9rem; margin-bottom: 0.75rem; font-size: 0.82rem; color: var(--green); font-weight: 600; display: none; align-items: center; gap: 0.5rem; }
+  .timeslot-label { font-size: 0.75rem; font-weight: 800; color: var(--ink); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+  .timeslot-date-banner { background: #E4F5C2; border: 2px solid var(--lime); border-radius: 8px; padding: 0.6rem 0.9rem; margin-bottom: 0.75rem; font-size: 0.82rem; color: #4A6B0F; font-weight: 700; display: none; align-items: center; gap: 0.5rem; }
   .timeslot-date-banner.show { display: flex; }
   .timeslot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
-  .timeslot-btn { border: 1.5px solid var(--gray); border-radius: 6px; padding: 0.55rem 0.4rem; font-size: 0.78rem; font-weight: 600; font-family: 'Inter', sans-serif; background: var(--white); color: var(--dark); cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s; text-align: center; }
-  .timeslot-btn:hover:not(.taken) { border-color: var(--green); color: var(--green); background: #F0F8F3; }
-  .timeslot-btn.selected { background: var(--green); color: var(--white); border-color: var(--green); }
-  .timeslot-btn.taken { background: var(--gray); color: #bbb; cursor: not-allowed; border-color: transparent; text-decoration: line-through; }
+  .timeslot-btn { border: 2px solid #DEDBC7; border-radius: 8px; padding: 0.6rem 0.4rem; font-size: 0.78rem; font-weight: 700; font-family: 'Inter', sans-serif; background: var(--white); color: var(--ink); cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s; text-align: center; }
+  .timeslot-btn:hover:not(.taken) { border-color: var(--lime-deep); color: var(--lime-deep); background: #F3FAE3; }
+  .timeslot-btn.selected { background: var(--ink); color: var(--lime); border-color: var(--ink); }
+  .timeslot-btn.taken { background: #EFECDD; color: #b8b39c; cursor: not-allowed; border-color: transparent; text-decoration: line-through; }
   .timeslot-empty { font-size: 0.82rem; color: var(--mid); font-style: italic; padding: 0.5rem 0; display: none; }
   .timeslot-placeholder { font-size: 0.82rem; color: var(--mid); font-style: italic; }
-  .gcal-notice { background: #E8F5EE; border: 1px solid #A8D5B8; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1.25rem; font-size: 0.8rem; color: var(--green); display: flex; align-items: center; gap: 0.5rem; }
-  #form-error { display: none; background: #FDECEA; border: 1px solid #E0A09A; border-radius: 6px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.82rem; color: var(--red); }
-  .submit-btn { width: 100%; background: var(--green); color: var(--white); padding: 0.9rem; border: none; border-radius: 5px; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.04em; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 0.6rem; }
-  .submit-btn:hover:not(:disabled) { background: var(--green-mid); }
-  .submit-btn:disabled { background: #999; cursor: not-allowed; }
-  .submit-btn .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.7s linear infinite; }
+  .gcal-notice { background: #E4F5C2; border: 2px solid var(--lime); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1.25rem; font-size: 0.8rem; color: #4A6B0F; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+  #form-error { display: none; background: #FBDAD5; border: 2px solid var(--red); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 1rem; font-size: 0.82rem; color: #9E2E20; font-weight: 600; }
+  .submit-btn { width: 100%; background: var(--lime); color: var(--black); padding: 0.95rem; border: 3px solid var(--ink); border-radius: 999px; font-size: 0.95rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; cursor: pointer; transition: transform 0.15s, box-shadow 0.15s; margin-top: 0.5rem; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; gap: 0.6rem; box-shadow: 5px 5px 0 var(--ink); }
+  .submit-btn:hover:not(:disabled) { transform: translate(-2px,-2px); box-shadow: 7px 7px 0 var(--ink); background: var(--yellow); }
+  .submit-btn:active:not(:disabled) { transform: translate(2px,2px); box-shadow: 2px 2px 0 var(--ink); }
+  .submit-btn:disabled { background: #cfcbb6; border-color: #cfcbb6; box-shadow: none; cursor: not-allowed; color: #8a8672; }
+  .submit-btn .spinner { display: none; width: 16px; height: 16px; border: 2px solid rgba(20,23,15,0.25); border-top-color: var(--ink); border-radius: 50%; animation: spin 0.7s linear infinite; }
   .submit-btn.loading .spinner { display: block; }
   @keyframes spin { to { transform: rotate(360deg); } }
   #form-success { display: none; text-align: center; padding: 2rem 1rem; }
-  #form-success .success-icon { width: 56px; height: 56px; border-radius: 50%; background: #E8F5EE; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
-  #form-success h4 { font-family: 'Playfair Display', serif; color: var(--green); font-size: 1.3rem; margin-bottom: 0.5rem; }
+  #form-success .success-icon { width: 60px; height: 60px; border-radius: 50%; background: #E4F5C2; border: 3px solid var(--lime); display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; }
+  #form-success h4 { font-family: 'Archivo Black', sans-serif; color: var(--ink); font-size: 1.35rem; margin-bottom: 0.5rem; text-transform: uppercase; }
   #form-success p { color: var(--mid); font-size: 0.9rem; line-height: 1.6; }
-  footer { background: var(--green); padding: 3rem 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
-  .footer-logo { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.1rem; }
-  .footer-logo span { color: var(--gold); }
-  .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { color: rgba(255,255,255,0.6); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
-  .footer-links a:hover { color: var(--gold); }
-  .footer-copy { color: rgba(255,255,255,0.4); font-size: 0.78rem; width: 100%; }
-  @media (max-width: 768px) { .nav-links { display: none; } .why-inner { grid-template-columns: 1fr; gap: 2rem; } .why-img { aspect-ratio: 16/9; } .booking-inner { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .trust-bar { gap: 1.25rem; } .timeslot-grid { grid-template-columns: repeat(2, 1fr); } }
 
-  /* Small fun animations */
-  @keyframes float { 0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)} }
+  footer { background: var(--black); padding: 3.5rem 5vw; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; border-top: 3px solid var(--lime); }
+  .footer-logo { display: flex; align-items: center; gap: 0.75rem; font-family: 'Archivo Black', sans-serif; color: var(--white); font-size: 1.15rem; text-transform: uppercase; }
+  .footer-logo img { width: 46px; height: 46px; object-fit: contain; border-radius: 50%; }
+  .footer-logo span { color: var(--lime); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.65); font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--lime); }
+  .footer-copy { color: rgba(255,255,255,0.35); font-size: 0.78rem; width: 100%; }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .why-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .why-img { aspect-ratio: 16/9; }
+    .booking-inner { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .trust-bar { gap: 1.25rem; }
+    .timeslot-grid { grid-template-columns: repeat(2, 1fr); }
+    .hero-emblem { width: 46vw; opacity: 0.5; }
+    .logo-img { width: 52px; height: 52px; }
+  }
+
+  @keyframes float { 0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)} }
   @keyframes fadeInUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
   @keyframes slideIn { from{opacity:0;transform:translateX(-8px)} to{opacity:1;transform:translateX(0)} }
+  @keyframes spin { to { transform: translate(-50%,-50%) rotate(360deg); } }
 
-  /* Floating contact button */
-  .contact-fab { position: fixed; right: 18px; bottom: 18px; background: linear-gradient(180deg,var(--gold),var(--gold-light)); color: var(--dark); border-radius: 999px; padding: 0.9rem 1.05rem; box-shadow: 0 12px 30px rgba(26,61,43,0.18); font-weight:700; z-index:120; display:flex; align-items:center; gap:0.6rem; text-decoration:none; }
-  .contact-fab:hover{ transform: translateY(-4px); }
+  .contact-fab { position: fixed; right: 20px; bottom: 20px; background: var(--lime); color: var(--black); clip-path: polygon(50% 0%, 61% 12%, 76% 4%, 80% 20%, 96% 18%, 92% 34%, 100% 46%, 86% 54%, 90% 70%, 74% 68%, 68% 84%, 54% 74%, 42% 90%, 34% 74%, 18% 80%, 20% 62%, 4% 58%, 14% 44%, 2% 30%, 18% 26%, 18% 10%, 34% 16%); width: 108px; height: 108px; font-weight: 800; z-index: 120; display:flex; align-items:center; justify-content:center; text-align:center; text-decoration:none; font-size: 0.62rem; letter-spacing: 0.01em; line-height:1.25; padding: 0 10px; transition: transform 0.2s; }
+  .contact-fab:hover{ transform: scale(1.08) rotate(-4deg); }
   .reveal { opacity: 0; transform: translateY(10px); transition: opacity 420ms ease, transform 420ms cubic-bezier(.2,.9,.3,1); }
   .reveal.show { opacity: 1; transform: none; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .logo-img, .hero-rays, .hero-emblem, .contact-fab { animation: none !important; }
+    * { scroll-behavior: auto !important; }
+  }
 </style>
 </head>
 <body>
@@ -158,16 +221,21 @@
   <a href="tel:2252539773" class="nav-cta">Call 225-253-9773</a>
 </nav>
 <section class="hero">
-  <p class="hero-eyebrow">Serving Your Neighborhood</p>
-  <div class="owner-banner" aria-hidden="false">
-    <span>🦸‍♂️</span>
-    <div style="max-width:820px;">Calling all yard warriors in Baton Rouge, Denham Springs, Walker, Prairieville, Gonzales, and Saint Amant! <strong>Helping Hands Lawn Care</strong> is on a mission to give your lawn the superhero treatment. If you’re in need of a reliable hero for your lawn, give us a call — Turbo Trimmy and Captain Cut It are here to save the day!</div>
-  </div>
-  <h1>Your Lawn,<br><em>Perfectly</em> Kept.</h1>
-  <p>Professional grass cutting and lawn care you can count on — done right, on time, every time.</p>
-  <div class="hero-actions">
-    <a href="#booking" class="btn-primary">Book a Cut</a>
-    <a href="#services" class="btn-outline">View Services</a>
+  <div class="hero-rays"></div>
+  <div class="hero-glow"></div>
+  <img src="assets/logo.png" alt="" class="hero-emblem" aria-hidden="true">
+  <div class="hero-content">
+    <p class="hero-eyebrow">★ Serving Your Neighborhood ★</p>
+    <div class="owner-banner" aria-hidden="false">
+      <span class="badge-emoji">🦸‍♂️</span>
+      <div style="max-width:820px;">Calling all yard warriors in Baton Rouge, Denham Springs, Walker, Prairieville, Gonzales, and Saint Amant! <strong>Helping Hands Lawn Care</strong> is on a mission to give your lawn the superhero treatment. If you're in need of a reliable hero for your lawn, give us a call — Turbo Trimmy and Captain Cut It are here to save the day!</div>
+    </div>
+    <h1>Your Lawn,<br><em>Perfectly</em> Kept.</h1>
+    <p>Professional grass cutting and lawn care you can count on — done right, on time, every time.</p>
+    <div class="hero-actions">
+      <a href="#booking" class="btn-primary">Book a Cut</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
   </div>
 </section>
 <div class="trust-bar">
@@ -184,28 +252,28 @@
   </div>
   <div class="services-grid">
     <div class="service-card" onclick="selectService('Standard Lawn Mow')">
-      <div class="service-icon"><svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="service-icon"><svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <h3>Standard Lawn Mow</h3>
       <p>Weekly or bi-weekly grass cutting with clean edging along driveways, sidewalks, and beds.</p>
       <p class="service-price">Starting at $45</p>
       <span class="book-hint">Book This ↓</span>
     </div>
     <div class="service-card" onclick="selectService('Edge &amp; Trim')">
-      <div class="service-icon"><svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <div class="service-icon"><svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
       <h3>Edge &amp; Trim</h3>
       <p>Precise string trimming around fences, trees, garden borders, and hard-to-reach areas.</p>
       <p class="service-price">Starting at $30</p>
       <span class="book-hint">Book This ↓</span>
     </div>
     <div class="service-card" onclick="selectService('Full Yard Cleanup')">
-      <div class="service-icon"><svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="service-icon"><svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <h3>Full Yard Cleanup</h3>
       <p>Debris removal, leaf blowing, and a thorough tidy-up to bring your yard back to life.</p>
       <p class="service-price">Starting at $75</p>
       <span class="book-hint">Book This ↓</span>
     </div>
     <div class="service-card" onclick="selectService('Recurring Service Plan')">
-      <div class="service-icon"><svg width="22" height="22" fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div class="service-icon"><svg width="22" height="22" fill="none" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
       <h3>Recurring Service Plan</h3>
       <p>Lock in a weekly or bi-weekly schedule and save 10%. Priority booking, no hassle.</p>
       <p class="service-price">Save 10% on all visits</p>
@@ -221,10 +289,10 @@
       <h2 class="section-title">Local Care You Can Actually Rely On</h2>
       <p class="section-sub">Helping Hands isn't a franchise. They're your neighbors — and treat every lawn like it's their own.</p>
       <ul class="why-list">
-        <li><div class="why-check"><svg width="10" height="10" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Shows up on time, every scheduled visit — no excuses, no ghosting.</li>
-        <li><div class="why-check"><svg width="10" height="10" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Takes on only what we can handle — so your lawn gets full attention, not a rushed crew.</li>
-        <li><div class="why-check"><svg width="10" height="10" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Clean, professional equipment maintained for a consistent, quality cut.</li>
-        <li><div class="why-check"><svg width="10" height="10" fill="none" stroke="white" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Easy online scheduling — book in minutes, get a confirmation the same day.</li>
+        <li><div class="why-check"><svg width="11" height="11" fill="none" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Shows up on time, every scheduled visit — no excuses, no ghosting.</li>
+        <li><div class="why-check"><svg width="11" height="11" fill="none" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Takes on only what we can handle — so your lawn gets full attention, not a rushed crew.</li>
+        <li><div class="why-check"><svg width="11" height="11" fill="none" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Clean, professional equipment maintained for a consistent, quality cut.</li>
+        <li><div class="why-check"><svg width="11" height="11" fill="none" stroke-width="3" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>Easy online scheduling — book in minutes, get a confirmation the same day.</li>
       </ul>
     </div>
   </div>
@@ -272,7 +340,7 @@
         <button class="submit-btn" id="submit-btn" onclick="submitForm()"><span class="spinner"></span><span class="btn-label">Request Appointment</span></button>
       </div>
       <div id="form-success">
-        <div class="success-icon"><svg width="26" height="26" fill="none" stroke="#2e7d52" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="success-icon"><svg width="26" height="26" fill="none" stroke="#4A6B0F" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h4>Request Sent!</h4>
         <p id="success-detail">Your booking request has been sent! We'll confirm via text within a few hours.</p>
       </div>
@@ -280,9 +348,9 @@
   </div>
 </section>
 <footer>
-  <div style="display:flex;flex-direction:column;gap:0.5rem;">
-    <div class="footer-logo">Helping <span>Hands</span></div>
-    <a href="tel:2252539773" style="color:var(--white);font-weight:700;text-decoration:none;margin-top:6px;">Call: 225-253-9773</a>
+  <div style="display:flex;flex-direction:column;gap:0.6rem;">
+    <div class="footer-logo"><img src="assets/logo.png" alt="Helping Hands logo">Helping <span>Hands</span></div>
+    <a href="tel:2252539773" style="color:var(--white);font-weight:700;text-decoration:none;margin-top:2px;">Call: 225-253-9773</a>
   </div>
   <div class="footer-links"><a href="#services">Services</a><a href="#about">About</a><a href="#booking">Book Now</a></div>
   <p class="footer-copy">2026 Helping Hands. All rights reserved.</p>
