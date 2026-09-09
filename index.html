@@ -8,9 +8,9 @@
   <link rel="icon" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --ink:#10271c; --forest:#143b27; --leaf:#2f8e49; --lime:#b8e04b; --cream:#f7f4ea; --sand:#e7dfcd; --gold:#d4a442; --white:#fffefa; --muted:#5b685c; --line:rgba(16,39,28,.14); --radius:1.35rem; --shadow:0 18px 50px rgba(16,39,28,.13); }
+    :root { --ink:#09251a; --forest:#0d4028; --leaf:#267947; --lime:#c9f24f; --cream:#f5f1e7; --sand:#e9e0cb; --orange:#ff8a3d; --sky:#bde6ef; --white:#fffdf7; --muted:#56645b; --line:rgba(9,37,26,.14); --radius:1.75rem; --shadow:0 22px 60px rgba(9,37,26,.14); }
     * { box-sizing:border-box; }
     html { scroll-behavior:smooth; }
     body { margin:0; color:var(--ink); background:var(--cream); font-family:"DM Sans",sans-serif; line-height:1.55; }
@@ -21,7 +21,7 @@
     .wrap { width:min(1160px,calc(100% - 2.5rem)); margin:auto; }
     .eyebrow { color:var(--leaf); font-size:.76rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
     h1,h2,h3,p { margin-top:0; }
-    h1,h2 { font-family:"Playfair Display",Georgia,serif; letter-spacing:-.045em; line-height:1.02; }
+    h1,h2 { font-family:"Sora","DM Sans",sans-serif; letter-spacing:-.055em; line-height:.98; }
     h2 { font-size:clamp(2.15rem,4vw,4rem); max-width:13ch; margin:.45rem 0 1.1rem; }
     .section { padding:clamp(4.8rem,9vw,8rem) 0; }
     .section-intro { display:grid; grid-template-columns:minmax(0,1fr) minmax(18rem,.7fr); align-items:end; gap:2rem; margin-bottom:3rem; }
@@ -85,8 +85,10 @@
     .comparison-front .comparison-stage > img { object-position:center 28%; }
     .comparison-divider { background:var(--white); bottom:0; box-shadow:0 0 0 1px rgba(16,39,28,.16),0 0 18px rgba(0,0,0,.22); left:var(--reveal); pointer-events:none; position:absolute; top:0; transform:translateX(-50%); width:3px; z-index:3; }
     .comparison-divider::after { align-items:center; background:var(--lime); border:3px solid var(--white); border-radius:50%; color:var(--ink); content:"↔"; display:flex; font-size:1.05rem; font-weight:700; height:42px; justify-content:center; left:50%; position:absolute; top:50%; transform:translate(-50%,-50%); width:42px; }
-    .comparison-range { appearance:none; background:transparent; cursor:ew-resize; inset:0; margin:0; opacity:0; position:absolute; width:100%; z-index:5; }
-    .comparison-range:focus-visible { opacity:1; outline:3px solid var(--lime); outline-offset:-5px; }
+    .comparison-range { appearance:none; background:transparent; cursor:ew-resize; inset:0; margin:0; position:absolute; width:100%; z-index:5; }
+    .comparison-range:focus-visible { outline:3px solid var(--lime); outline-offset:-5px; }
+    .comparison-range::-webkit-slider-runnable-track { background:transparent; }
+    .comparison-range::-moz-range-track { background:transparent; }
     .comparison-range::-webkit-slider-thumb { appearance:none; height:50px; width:50px; }
     .comparison-range::-moz-range-thumb { background:transparent; border:0; height:50px; width:50px; }
     .comparison-label { background:rgba(11,30,20,.82); border:1px solid rgba(255,255,255,.3); border-radius:999px; color:var(--white); font-size:.7rem; font-weight:700; letter-spacing:.1em; padding:.4rem .65rem; pointer-events:none; position:absolute; text-transform:uppercase; top:1rem; z-index:4; }
@@ -146,11 +148,112 @@
     .footer-links { display:flex; flex-wrap:wrap; gap:1rem; }
     .footer-links a { color:var(--white); font-size:.82rem; font-weight:700; text-decoration:none; }
     .call-fab { background:var(--lime); border-radius:999px; bottom:1.15rem; box-shadow:0 12px 28px rgba(16,39,28,.25); color:var(--ink); font-size:.84rem; font-weight:700; padding:.78rem 1rem; position:fixed; right:1.15rem; text-decoration:none; z-index:10; }
+    .mower-scene { --mower-duration:32s; bottom:0; height:170px; left:0; overflow:hidden; pointer-events:none; position:fixed; right:0; z-index:8; }
+    .mower-grass { bottom:0; height:43px; left:0; overflow:hidden; position:absolute; right:0; z-index:1; }
+    .mower-grass-ground { background:linear-gradient(90deg,#235f36,#348348 48%,#1d6b3e); bottom:0; height:8px; left:0; position:absolute; right:0; }
+    .mower-grass-segment { background-position:left bottom; background-repeat:repeat-x; bottom:5px; left:0; position:absolute; will-change:left,width; }
+    .mower-grass-cut { background-image:url("assets/grass-cut-sprite-v1.png"); background-size:256px 36px; height:36px; width:0; z-index:1; }
+    .mower-grass-uncut { background-image:url("assets/grass-uncut-sprite-v1.png"); background-size:256px 36px; height:36px; right:0; z-index:2; }
+    .mower-runner { bottom:6px; left:0; position:absolute; transform:translateX(-236px); width:220px; will-change:transform; z-index:2; }
+    .mower-direction { transform-origin:center; will-change:transform; }
+    .mower-bob { animation:mower-bob .64s ease-in-out infinite; position:relative; }
+    .mower-pose { filter:drop-shadow(0 7px 6px rgba(6,25,16,.28)); image-rendering:pixelated; left:0; opacity:0; position:absolute; top:0; width:100%; }
+    .mower-pose-mow-1 { opacity:1; position:relative; }
+    .mower-runner:not([data-frame="mow-1"]) .mower-pose-mow-1 { opacity:0; }
+    .mower-runner[data-frame="mow-2"] .mower-pose-mow-2,
+    .mower-runner[data-frame="mow-3"] .mower-pose-mow-3,
+    .mower-runner[data-frame="mow-4"] .mower-pose-mow-4,
+    .mower-runner[data-frame="thumb-start"] .mower-pose-thumb-start,
+    .mower-runner[data-frame="thumb-1"] .mower-pose-thumb-1,
+    .mower-runner[data-frame="thumb-mid"] .mower-pose-thumb-mid,
+    .mower-runner[data-frame="thumb-2"] .mower-pose-thumb-2,
+    .mower-runner[data-frame="thumb-full"] .mower-pose-thumb-full { opacity:1; }
+    .mower-runner:not([data-pose="cutting"]) .mower-bob { animation-play-state:paused; }
+    .mower-scene[data-motion="parked"] .mower-runner { transform:translateX(18px); }
+    .mower-scene[data-motion="parked"] .mower-direction { transform:scaleX(1); }
+    .mower-scene[data-motion="parked"] .mower-bob { animation:none; }
+    .mower-scene[data-motion="parked"] .mower-grass-cut { width:14%; }
+    .mower-scene[data-motion="parked"] .mower-grass-uncut { left:14%; }
+    @keyframes mower-bob { 0%,100% { transform:translateY(0) rotate(-.3deg); } 50% { transform:translateY(2px) rotate(.3deg); } }
+
+    /* Modern neighborhood crew refresh */
+    body { background:var(--cream); }
+    h3,.service-card h3,.video-copy h3,.comparison-copy h3,.person h3,.form h3 { font-family:"Sora","DM Sans",sans-serif; letter-spacing:-.035em; }
+    h2 { font-size:clamp(2.35rem,4.8vw,4.65rem); max-width:14ch; }
+    .eyebrow { align-items:center; display:flex; gap:.55rem; letter-spacing:.12em; }
+    .eyebrow::before { background:var(--orange); border-radius:999px; content:""; height:.55rem; width:.55rem; }
+    .section { overflow:hidden; position:relative; }
+    .section-shape { background:var(--lime); border-radius:55% 45% 48% 52%; height:180px; opacity:.24; pointer-events:none; position:absolute; right:-95px; top:48px; transform:rotate(18deg); width:180px; }
+    .btn { font-size:.84rem; letter-spacing:.02em; padding:.92rem 1.35rem; }
+    .btn-primary { background:var(--lime); box-shadow:0 5px 0 #7da629; }
+    .btn-primary:hover { background:#d8fa72; transform:translateY(-3px) rotate(-1deg); }
+    .site-header { background:rgba(9,37,26,.9); border:1px solid rgba(255,255,255,.14); border-radius:999px; box-shadow:0 16px 45px rgba(9,37,26,.2); left:50%; right:auto; top:14px; transform:translateX(-50%); width:min(1160px,calc(100% - 2rem)); }
+    .nav { height:78px; padding:0 1rem 0 .75rem; width:100%; }
+    .brand img { border-radius:.7rem; height:62px; }
+    .brand span { font-family:"Sora","DM Sans",sans-serif; font-size:1.02rem; }
+    .nav-links { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.08); border-radius:999px; gap:.2rem; padding:.35rem; }
+    .nav-links a { border-radius:999px; display:block; padding:.45rem .75rem; }
+    .nav-links a:hover { background:rgba(201,242,79,.13); }
+    .hero { background:var(--ink); min-height:730px; padding:126px 0 72px; }
+    .hero::before { background:radial-gradient(circle at 10% 18%,rgba(201,242,79,.22),transparent 27rem),radial-gradient(circle at 88% 32%,rgba(255,138,61,.2),transparent 25rem),repeating-linear-gradient(110deg,transparent 0 54px,rgba(255,255,255,.025) 54px 56px); }
+    .hero-grid { gap:clamp(2rem,5vw,5rem); grid-template-columns:.92fr 1.08fr; }
+    .hero h1 { font-size:clamp(3.5rem,6.7vw,7rem); max-width:9ch; }
+    .hero-copy > p { max-width:31rem; }
+    .hero-visual { padding:1.25rem 0 2.5rem 1.25rem; position:relative; }
+    .hero-photo { border:1px solid rgba(255,255,255,.2); border-radius:2.35rem 2.35rem 6rem 2.35rem; transform:rotate(1.5deg); }
+    .hero-photo img { aspect-ratio:4/4.25; object-position:center 22%; }
+    .hero-photo::after { border-radius:1.6rem 1.6rem 5rem 1.6rem; }
+    .hero-note { background:var(--orange); bottom:1.6rem; border-radius:999px; right:1.2rem; transform:rotate(-3deg); }
+    .hero-badge { align-items:center; background:var(--white); border:5px solid var(--ink); border-radius:1.25rem; bottom:-.35rem; color:var(--ink); display:flex; font-family:"Sora","DM Sans",sans-serif; font-size:.78rem; font-weight:800; gap:.55rem; left:-.6rem; padding:.8rem 1rem; position:absolute; transform:rotate(-4deg); z-index:3; }
+    .hero-badge::before { background:var(--lime); border-radius:50%; content:""; height:.7rem; width:.7rem; }
+    .hero-metrics { display:flex; flex-wrap:wrap; gap:.55rem; list-style:none; margin:1.55rem 0 0; padding:0; }
+    .hero-metrics li { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.15); border-radius:999px; color:rgba(255,255,255,.82); font-size:.73rem; font-weight:700; padding:.48rem .75rem; }
+    .service-area { letter-spacing:.015em; }
+    .trust { background:var(--lime); color:var(--ink); padding:.72rem 0; }
+    .trust-grid { gap:.65rem; }
+    .trust-item { background:rgba(255,253,247,.58); border:0; border-radius:1rem; padding:1rem 1.1rem; }
+    .trust-item strong { color:var(--forest); font-family:"Sora","DM Sans",sans-serif; }
+    .services { background:var(--cream); }
+    .services-grid { gap:1.1rem; }
+    .service-card { background:var(--white); border:0; border-radius:1.5rem; box-shadow:0 10px 0 rgba(9,37,26,.08); min-height:285px; padding:1.5rem; }
+    .service-card:nth-child(2) { background:var(--sky); }
+    .service-card:nth-child(3) { background:#ffe0c8; }
+    .service-card:nth-child(4) { background:#e0edc0; }
+    .service-card:hover { box-shadow:0 18px 0 rgba(9,37,26,.1); transform:translateY(-8px) rotate(-.7deg); }
+    .number { background:var(--ink); }
+    .service-tag { border:1px solid rgba(9,37,26,.16); border-radius:999px; color:var(--leaf); display:inline-flex; font-size:.66rem; font-weight:800; letter-spacing:.08em; margin-left:auto; padding:.35rem .55rem; text-transform:uppercase; }
+    .service-head { align-items:center; display:flex; }
+    .service-card h3 { font-size:1.48rem; }
+    .proof { background:#e2efda; }
+    .gallery { gap:.8rem; grid-template-rows:230px 230px; }
+    .gallery figure { border:5px solid rgba(255,255,255,.72); border-radius:1.75rem; box-shadow:0 12px 32px rgba(9,37,26,.12); }
+    .gallery figure:nth-child(2) { transform:rotate(1deg); }
+    .gallery figure:nth-child(4) { transform:rotate(-1deg); }
+    .transformations { background:var(--cream); }
+    .comparison { border:0; border-radius:2rem; box-shadow:0 12px 0 rgba(9,37,26,.09); }
+    .comparison-copy { background:var(--white); }
+    .watch { background:linear-gradient(145deg,#09251a,#123d2b 65%,#164933); }
+    .video-card { border:1px solid rgba(255,255,255,.13); border-radius:2rem; box-shadow:0 18px 45px rgba(0,0,0,.18); }
+    .team { background:var(--white); }
+    .team-collage { transform:rotate(-.6deg); }
+    .team-image { border:5px solid var(--cream); box-shadow:0 16px 34px rgba(9,37,26,.12); }
+    .team-image.main { border-radius:2rem 2rem 2rem 5rem; }
+    .person { background:var(--cream); border:0; border-radius:1.25rem; }
+    .request { background:var(--orange); color:var(--ink); }
+    .request .eyebrow { color:var(--ink); }
+    .request .eyebrow::before { background:var(--forest); }
+    .request-copy > p:not(.eyebrow) { color:rgba(9,37,26,.74); }
+    .request-call { border-color:rgba(9,37,26,.2); }
+    .request-call a { color:var(--ink); }
+    .form { border:1px solid rgba(9,37,26,.1); border-radius:2rem; box-shadow:10px 10px 0 var(--ink); padding:1.8rem; }
+    input,select,textarea { background:#fffefb; border:1px solid rgba(9,37,26,.2); border-radius:.9rem; }
+    footer { background:#061910; }
+    .call-fab { border:2px solid var(--ink); box-shadow:5px 5px 0 var(--ink); }
     .reveal { opacity:0; transform:translateY(20px); transition:opacity .65s ease,transform .65s ease; }
     .reveal.is-visible { opacity:1; transform:none; }
-    @media (max-width:850px) { .nav-links { background:var(--ink); display:none; left:0; padding:1.2rem 1.25rem 1.5rem; position:absolute; right:0; top:104px; } .nav-links.open { display:grid; gap:1rem; } .nav-cta { display:none; } .nav-toggle { display:block; } .hero-grid,.team-layout,.request-grid { grid-template-columns:1fr; } .hero { min-height:auto; } .hero-photo { margin:auto; max-width:450px; width:82%; } .trust-grid,.services-grid { grid-template-columns:repeat(2,1fr); } .section-intro { grid-template-columns:1fr; } .team-collage { min-height:500px; } }
-    @media (max-width:620px) { .wrap { width:min(100% - 1.5rem,1160px); } .hero { padding-top:145px; } .hero h1 { font-size:3.25rem; } .trust-grid,.services-grid,.video-grid,.team-cards,.form-grid,.comparison-grid { grid-template-columns:1fr; } .trust-item { border-left:0; border-top:1px solid rgba(255,255,255,.16); } .trust-item:first-child { border-top:0; } .gallery { grid-template-columns:1fr 1fr; grid-template-rows:210px 145px 145px; } .gallery figure:first-child { grid-column:span 2; grid-row:auto; } .team-collage { grid-template-columns:1fr 1fr; grid-template-rows:350px 175px; min-height:0; } .team-image.main { grid-column:1 / -1; grid-row:auto; } .team-image.action { min-height:175px; } .footer-grid { align-items:flex-start; flex-direction:column; } .call-fab { bottom:.8rem; right:.8rem; } }
-    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms !important; scroll-behavior:auto !important; transition-duration:.01ms !important; } .reveal { opacity:1; transform:none; } }
+    @media (max-width:850px) { .nav-links { background:var(--ink); border-radius:1.25rem; display:none; left:-1px; padding:1rem; position:absolute; right:-1px; top:84px; } .nav-links.open { display:grid; gap:.25rem; } .nav-cta { display:none; } .nav-toggle { display:block; } .hero-grid,.team-layout,.request-grid { grid-template-columns:1fr; } .hero { min-height:auto; } .hero-copy { max-width:46rem; } .hero-visual { margin:auto; max-width:500px; padding-left:1rem; width:90%; } .hero-photo { margin:auto; max-width:none; width:100%; } .trust-grid,.services-grid { grid-template-columns:repeat(2,1fr); } .section-intro { grid-template-columns:1fr; } .team-collage { min-height:500px; } }
+    @media (max-width:620px) { .wrap { width:min(100% - 1.5rem,1160px); } .site-header { width:calc(100% - 1rem); } .hero { padding-top:125px; } .hero h1 { font-size:3.25rem; } .hero-visual { padding-left:.5rem; width:100%; } .hero-badge { bottom:.25rem; left:-.25rem; } .trust-grid,.services-grid,.video-grid,.team-cards,.form-grid,.comparison-grid { grid-template-columns:1fr; } .trust-item { border:0; } .gallery { grid-template-columns:1fr 1fr; grid-template-rows:210px 145px 145px; } .gallery figure:first-child { grid-column:span 2; grid-row:auto; } .team-collage { grid-template-columns:1fr 1fr; grid-template-rows:350px 175px; min-height:0; } .team-image.main { grid-column:1 / -1; grid-row:auto; } .team-image.action { min-height:175px; } .footer-grid { align-items:flex-start; flex-direction:column; } .call-fab { bottom:.8rem; right:.8rem; } .mower-scene { height:118px; } .mower-runner { bottom:4px; width:150px; } .mower-grass { height:32px; } .mower-grass-segment { bottom:4px; } .mower-grass-cut { background-size:192px 27px; height:27px; } .mower-grass-uncut { background-size:192px 27px; height:27px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms !important; scroll-behavior:auto !important; transition-duration:.01ms !important; } .reveal { opacity:1; transform:none; } .mower-runner { transform:translateX(18px) !important; } .mower-grass-cut { width:14% !important; } .mower-grass-uncut { left:14% !important; } }
   </style>
 </head>
 <body>
@@ -169,35 +272,40 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Helping Hands Lawn Care</p>
+          <p class="eyebrow">Baton Rouge lawns, handled</p>
           <h1>A yard you’re glad to come home to.</h1>
-          <p>Dependable mowing, edging, cleanup, and recurring care from a local crew that knows the Baton Rouge area.</p>
+          <p>Mowing, edging, cleanup, and regular lawn care from a local crew you can call directly.</p>
           <div class="hero-actions"><a class="btn btn-primary" href="#request">Request service</a><a class="btn btn-ghost" href="tel:+12252539773">Call Tim</a><a class="btn btn-ghost" href="tel:+12252055316">Call Jim</a></div>
+          <ul class="hero-metrics" aria-label="Available services"><li>Mow + trim</li><li>Yard cleanup</li><li>Weekly or bi-weekly</li></ul>
           <p class="service-area">Baton Rouge · Denham Springs · Walker · Prairieville · Gonzales · Saint Amant</p>
         </div>
-        <div class="hero-photo reveal"><img src="assets/work-01.jpg" alt="Freshly maintained residential lawn"><span class="hero-note">Local work. Clean lines.</span></div>
+        <div class="hero-visual reveal"><div class="hero-photo"><img src="assets/crew-trimming.jpg" alt="Helping Hands crew member ready for trimming work"><span class="hero-note">Local crew. Real work.</span></div><div class="hero-badge">Serving the Baton Rouge area</div></div>
       </div>
     </section>
 
-    <section class="trust" aria-label="Business highlights"><div class="wrap trust-grid"><div class="trust-item"><strong>Call-first</strong>Speak with a real local contact.</div><div class="trust-item"><strong>Clear options</strong>Mowing, trim, cleanup, or recurring care.</div><div class="trust-item"><strong>Local crew</strong>Serving the Baton Rouge area.</div><div class="trust-item"><strong>Request online</strong>Send the details when it suits you.</div></div></section>
+    <section class="trust" aria-label="Business highlights"><div class="wrap trust-grid"><div class="trust-item"><strong>Real people</strong>Call Jim or Tim directly.</div><div class="trust-item"><strong>Clear choices</strong>Mowing, trimming, or cleanup.</div><div class="trust-item"><strong>Local routes</strong>Six nearby communities.</div><div class="trust-item"><strong>Easy request</strong>Send the yard details online.</div></div></section>
 
-    <section class="section services" id="services"><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">What we handle</p><h2>Care that fits your yard.</h2></div><p>Pick the job you need now or set up a regular visit. Every request starts with a quick conversation about your property.</p></div><div class="services-grid"><article class="service-card reveal"><span class="number">01</span><h3>Routine mowing</h3><p>Weekly or bi-weekly cuts to keep the lawn tidy through the growing season.</p><a href="#request">Request mowing →</a></article><article class="service-card reveal"><span class="number">02</span><h3>Edge &amp; trim</h3><p>Detail work around sidewalks, driveways, beds, trees, and fence lines.</p><a href="#request">Request trimming →</a></article><article class="service-card reveal"><span class="number">03</span><h3>Yard cleanup</h3><p>Leaf, debris, and overgrowth cleanup when the yard needs a reset.</p><a href="#request">Request cleanup →</a></article><article class="service-card reveal"><span class="number">04</span><h3>Recurring care</h3><p>A simple regular schedule for homeowners who want one less thing to track.</p><a href="#request">Ask about a schedule →</a></article></div></div></section>
+    <section class="section services" id="services"><span class="section-shape" aria-hidden="true"></span><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">What we do</p><h2>Cuts, cleanups, and regular routes.</h2></div><p>Tell us what the yard needs. We’ll talk through the property and set up the right visit.</p></div><div class="services-grid"><article class="service-card reveal"><div class="service-head"><span class="number">01</span><span class="service-tag">Weekly / bi-weekly</span></div><h3>Routine mowing</h3><p>Keep the grass tidy through the growing season without chasing your own schedule.</p><a href="#request">Request mowing →</a></article><article class="service-card reveal"><div class="service-head"><span class="number">02</span><span class="service-tag">Crisp finish</span></div><h3>Edge &amp; trim</h3><p>Clean lines around sidewalks, driveways, beds, trees, and fence lines.</p><a href="#request">Request trimming →</a></article><article class="service-card reveal"><div class="service-head"><span class="number">03</span><span class="service-tag">One-time reset</span></div><h3>Yard cleanup</h3><p>Clear leaves, debris, and overgrowth when the yard has gotten away from you.</p><a href="#request">Request cleanup →</a></article><article class="service-card reveal"><div class="service-head"><span class="number">04</span><span class="service-tag">Set schedule</span></div><h3>Recurring care</h3><p>Choose a regular route and take lawn day off your list.</p><a href="#request">Ask about a schedule →</a></article></div></div></section>
 
-    <section class="section proof" id="work"><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">Real work</p><h2>The details make the difference.</h2></div><p>Real Baton Rouge-area lawns, real Helping Hands visits—from the first walk-through to the final pass.</p></div><div class="gallery"><figure class="reveal"><img src="assets/yard-finished.jpg" alt="Helping Hands crew member finishing a freshly cut backyard" loading="lazy"><figcaption>The final pass</figcaption></figure><figure class="reveal"><img src="assets/yard-assessment.jpg" alt="Crew member measuring tall grass before lawn service" loading="lazy"><figcaption>Every job starts with a look</figcaption></figure><figure class="reveal"><img src="assets/work-04.jpg" alt="Freshly cut grass with crisp mowing lines" loading="lazy"><figcaption>Fresh cut</figcaption></figure><figure class="reveal"><img src="assets/work-03.jpg" alt="Close detail of clean lawn edging" loading="lazy"><figcaption>Edge work</figcaption></figure><figure class="reveal"><img src="assets/work-06.jpg" alt="Finished residential landscaping result" loading="lazy"><figcaption>Ready to enjoy</figcaption></figure></div></div></section>
+    <section class="section proof" id="work"><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">Real work</p><h2>See what the crew leaves behind.</h2></div><p>These are Helping Hands jobs around the Baton Rouge area, from the first walk-through to the final pass.</p></div><div class="gallery"><figure class="reveal"><img src="assets/yard-finished.jpg" alt="Helping Hands crew member finishing a freshly cut backyard" loading="lazy"><figcaption>The final pass</figcaption></figure><figure class="reveal"><img src="assets/yard-assessment.jpg" alt="Crew member measuring tall grass before lawn service" loading="lazy"><figcaption>Every job starts with a look</figcaption></figure><figure class="reveal"><img src="assets/work-04.jpg" alt="Freshly cut grass with crisp mowing lines" loading="lazy"><figcaption>Fresh cut</figcaption></figure><figure class="reveal"><img src="assets/work-03.jpg" alt="Close detail of clean lawn edging" loading="lazy"><figcaption>Edge work</figcaption></figure><figure class="reveal"><img src="assets/work-06.jpg" alt="Finished residential landscaping result" loading="lazy"><figcaption>Ready to enjoy</figcaption></figure></div></div></section>
 
-    <section class="section transformations" aria-labelledby="transformations-title"><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">Before &amp; after</p><h2 id="transformations-title">See the change for yourself.</h2></div><p>Drag each handle to compare the property when the crew arrived with the clean, finished result.</p></div><div class="comparison-grid">
+    <section class="section transformations" aria-labelledby="transformations-title"><span class="section-shape" aria-hidden="true"></span><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">Before &amp; after</p><h2 id="transformations-title">Same property. Better afternoon.</h2></div><p>Drag each handle to compare the first look with the finished cut and cleanup.</p></div><div class="comparison-grid">
       <article class="comparison reveal"><div class="comparison-stage"><img class="comparison-before" src="assets/transformation-driveway-before.jpg" alt="Driveway and front lawn before cleanup" loading="lazy"><img class="comparison-after" src="assets/transformation-driveway-after.jpg" alt="The same driveway and front lawn after Helping Hands service" loading="lazy"><span class="comparison-label before">Before</span><span class="comparison-label after">After</span><span class="comparison-divider" aria-hidden="true"></span><input class="comparison-range" type="range" min="0" max="100" value="58" aria-label="Reveal the finished driveway cleanup" aria-valuetext="58 percent after"></div><div class="comparison-copy"><small>Cleanup + finishing</small><h3>Driveway reset</h3><p>Overgrowth cleared, edges tightened, and the whole arrival cleaned up.</p></div></article>
       <article class="comparison comparison-front reveal"><div class="comparison-stage"><img class="comparison-before" src="assets/transformation-front-before.jpg" alt="Tall front lawn before mowing" loading="lazy"><img class="comparison-after" src="assets/transformation-front-after.jpg" alt="The same front lawn neatly mowed after Helping Hands service" loading="lazy"><span class="comparison-label before">Before</span><span class="comparison-label after">After</span><span class="comparison-divider" aria-hidden="true"></span><input class="comparison-range" type="range" min="0" max="100" value="58" aria-label="Reveal the finished front lawn" aria-valuetext="58 percent after"></div><div class="comparison-copy"><small>Mow + edge</small><h3>Front-yard finish</h3><p>A full cut and careful cleanup that puts the home back in focus.</p></div></article>
     </div></div></section>
 
-    <section class="section watch" id="watch"><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">See the crew</p><h2>Work in motion.</h2></div><p>Two recent Helping Hands visits. Press play to watch the crew at work.</p></div><div class="video-grid"><article class="video-card reveal"><video controls muted preload="metadata" playsinline poster="assets/work-03.jpg"><source src="assets/mow-day-upbeat.mp4" type="video/mp4">Your browser does not support this video.</video><div class="video-copy"><h3>Mow day</h3><p>A full cut with the finishing work that makes the lawn look pulled together.</p></div></article><article class="video-card reveal"><video controls muted preload="metadata" playsinline poster="assets/work-04.jpg"><source src="assets/fresh-cut-upbeat.mp4" type="video/mp4">Your browser does not support this video.</video><div class="video-copy"><h3>Fresh-cut results</h3><p>A look at the grass, lines, and cleanup after the crew is through.</p></div></article></div></div></section>
+    <section class="section watch" id="watch"><div class="wrap"><div class="section-intro reveal"><div><p class="eyebrow">Press play</p><h2>The crew at work.</h2></div><p>Watch a full cut and the finishing passes that pull the yard together.</p></div><div class="video-grid"><article class="video-card reveal"><video controls muted preload="metadata" playsinline poster="assets/work-03.jpg"><source src="assets/mow-day-upbeat.mp4" type="video/mp4">Your browser does not support this video.</video><div class="video-copy"><h3>Mow day</h3><p>A full cut with the finishing work that makes the lawn look pulled together.</p></div></article><article class="video-card reveal"><video controls muted preload="metadata" playsinline poster="assets/work-04.jpg"><source src="assets/fresh-cut-upbeat.mp4" type="video/mp4">Your browser does not support this video.</video><div class="video-copy"><h3>Fresh-cut results</h3><p>A look at the grass, lines, and cleanup after the crew is through.</p></div></article></div></div></section>
 
-    <section class="section team" id="team"><div class="wrap team-layout"><div class="team-collage reveal"><figure class="team-image main"><img src="assets/crew-team.jpg" alt="Three members of the Helping Hands crew standing with their lawn equipment" loading="lazy"><span>The Helping Hands crew</span></figure><figure class="team-image action"><img src="assets/crew-mowing.jpg" alt="Helping Hands crew member mowing a neighborhood lawn" loading="lazy"></figure><figure class="team-image action"><img src="assets/crew-trimming.jpg" alt="Helping Hands crew member ready for trimming work" loading="lazy"></figure></div><div class="team-copy reveal"><p class="eyebrow">Meet Helping Hands</p><h2>Local people who show up.</h2><p>Helping Hands is led by Jim and Tim Hope. The crew brings the equipment, attention, and follow-through to leave each property looking cared for—not just cut.</p><div class="team-cards"><article class="person"><small>Owner</small><h3>Jim Hope</h3><a href="tel:+12252055316">(225) 205-5316</a></article><article class="person"><small>Manager</small><h3>Tim Hope</h3><a href="tel:+12252539773">(225) 253-9773</a></article></div></div></div></section>
+    <section class="section team" id="team"><div class="wrap team-layout"><div class="team-collage reveal"><figure class="team-image main"><img src="assets/crew-team.jpg" alt="Three members of the Helping Hands crew standing with their lawn equipment" loading="lazy"><span>The Helping Hands crew</span></figure><figure class="team-image action"><img src="assets/crew-mowing.jpg" alt="Helping Hands crew member mowing a neighborhood lawn" loading="lazy"></figure><figure class="team-image action"><img src="assets/crew-trimming.jpg" alt="Helping Hands crew member ready for trimming work" loading="lazy"></figure></div><div class="team-copy reveal"><p class="eyebrow">Meet the crew</p><h2>The people behind the equipment.</h2><p>Jim and Tim Hope lead Helping Hands. Call them directly, tell them what the yard needs, and the crew will take it from there.</p><div class="team-cards"><article class="person"><small>Owner</small><h3>Jim Hope</h3><a href="tel:+12252055316">(225) 205-5316</a></article><article class="person"><small>Manager</small><h3>Tim Hope</h3><a href="tel:+12252539773">(225) 253-9773</a></article></div></div></div></section>
 
-    <section class="section request" id="request"><div class="wrap request-grid"><div class="request-copy reveal"><p class="eyebrow">Get in touch</p><h2>Tell us what your yard needs.</h2><p>Use this request form to send the basics. For a faster conversation, call Tim directly.</p><div class="request-call"><small>Tim Hope, Manager</small><br><a href="tel:+12252539773">(225) 253-9773</a></div></div><form class="form reveal" id="service-form"><h3>Request service</h3><p>This is a request, not a confirmed appointment. The team will follow up about availability.</p><div class="form-grid"><div class="field"><label for="name">Your name</label><input id="name" name="name" required autocomplete="name"></div><div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" required type="tel" autocomplete="tel"></div><div class="field full"><label for="address">Service address</label><input id="address" name="address" required autocomplete="street-address"></div><div class="field full"><label for="service">What do you need?</label><select id="service" name="service" required><option value="">Choose a service</option><option>Routine mowing</option><option>Edge and trim</option><option>Yard cleanup</option><option>Recurring care</option><option>Something else</option></select></div><div class="field full"><label for="notes">A few details</label><textarea id="notes" name="notes" placeholder="Gate access, lawn size, pets, or anything else the crew should know"></textarea></div></div><button class="btn btn-primary" type="submit">Prepare my request</button><p class="form-message" id="form-message" aria-live="polite"></p></form></div></section>
+    <section class="section request" id="request"><div class="wrap request-grid"><div class="request-copy reveal"><p class="eyebrow">Get on the route</p><h2>Show us the yard.</h2><p>Send the address and the work you have in mind. Call Tim if you’d rather talk it through.</p><div class="request-call"><small>Tim Hope, Manager</small><br><a href="tel:+12252539773">(225) 253-9773</a></div></div><form class="form reveal" id="service-form"><h3>Request service</h3><p>Send the basics and the team will follow up about timing and availability.</p><div class="form-grid"><div class="field"><label for="name">Your name</label><input id="name" name="name" required autocomplete="name"></div><div class="field"><label for="phone">Phone number</label><input id="phone" name="phone" required type="tel" autocomplete="tel"></div><div class="field full"><label for="address">Service address</label><input id="address" name="address" required autocomplete="street-address"></div><div class="field full"><label for="service">What do you need?</label><select id="service" name="service" required><option value="">Choose a service</option><option>Routine mowing</option><option>Edge and trim</option><option>Yard cleanup</option><option>Recurring care</option><option>Something else</option></select></div><div class="field full"><label for="notes">A few details</label><textarea id="notes" name="notes" placeholder="Gate access, lawn size, pets, or anything else the crew should know"></textarea></div></div><button class="btn btn-primary" type="submit">Prepare my request</button><p class="form-message" id="form-message" aria-live="polite"></p></form></div></section>
   </main>
 
   <footer><div class="wrap footer-grid"><div><a class="brand" href="#top"><img src="assets/logo.png" alt="Helping Hands Lawn Care logo"><span>Helping <b>Hands</b></span></a><p>Baton Rouge, Denham Springs, Walker, Prairieville, Gonzales, and Saint Amant.</p></div><div class="footer-links"><a href="tel:+12252055316">Jim: (225) 205-5316</a><a href="tel:+12252539773">Tim: (225) 253-9773</a><a href="#request">Request service</a></div></div></footer>
+  <div class="mower-scene" data-motion="mowing" aria-hidden="true">
+    <div class="mower-grass"><span class="mower-grass-ground"></span><span class="mower-grass-segment mower-grass-cut"></span><span class="mower-grass-segment mower-grass-uncut"></span></div>
+    <div class="mower-runner" data-pose="cutting" data-frame="mow-1"><div class="mower-direction"><div class="mower-bob"><img class="mower-pose mower-pose-mow-1" src="assets/mower-sprite-cutting-v1.png" alt=""><img class="mower-pose mower-pose-mow-2" src="assets/mower-sprite-mow-2-v1.png" alt=""><img class="mower-pose mower-pose-mow-3" src="assets/mower-sprite-mow-3-v1.png" alt=""><img class="mower-pose mower-pose-mow-4" src="assets/mower-sprite-mow-4-v1.png" alt=""><img class="mower-pose mower-pose-thumb-start" src="assets/mower-sprite-thumb-start-v1.png" alt=""><img class="mower-pose mower-pose-thumb-1" src="assets/mower-sprite-thumb-1-v1.png" alt=""><img class="mower-pose mower-pose-thumb-mid" src="assets/mower-sprite-thumb-mid-v1.png" alt=""><img class="mower-pose mower-pose-thumb-2" src="assets/mower-sprite-thumb-2-v1.png" alt=""><img class="mower-pose mower-pose-thumb-full" src="assets/mower-sprite-thumbs-v1.png" alt=""></div></div></div>
+  </div>
   <a class="call-fab" href="tel:+12252539773" aria-label="Call Tim Hope at 225 253 9773">Call Tim</a>
   <script>
     const toggle = document.querySelector('.nav-toggle');
@@ -216,6 +324,37 @@
       update();
     });
     document.querySelector('#service-form').addEventListener('submit', event => { event.preventDefault(); document.querySelector('#form-message').textContent = 'Thanks. Your request is ready to discuss. Call Tim at (225) 253-9773 to schedule.'; });
+  </script>
+  <script type="module">
+    import { getMowerFrame, getMowerMotionState } from './assets/mower-motion.mjs';
+    const mowerScene = document.querySelector('.mower-scene');
+    const mowerMotion = getMowerMotionState({ reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches });
+    const mowerRunner = mowerScene.querySelector('.mower-runner');
+    const mowerDirection = mowerScene.querySelector('.mower-direction');
+    const mowerCutGrass = mowerScene.querySelector('.mower-grass-cut');
+    const mowerUncutGrass = mowerScene.querySelector('.mower-grass-uncut');
+    mowerScene.dataset.motion = mowerMotion.mode;
+    mowerScene.style.setProperty('--mower-duration', `${mowerMotion.durationSeconds}s`);
+    if (mowerMotion.mode === 'mowing') {
+      const startedAt = performance.now();
+      let mowerWidth = mowerRunner.getBoundingClientRect().width;
+      window.addEventListener('resize', () => { mowerWidth = mowerRunner.getBoundingClientRect().width; }, { passive:true });
+      const renderMower = now => {
+        const elapsedSeconds = (now - startedAt) / 1000;
+        const progress = (elapsedSeconds % mowerMotion.durationSeconds) / mowerMotion.durationSeconds;
+        const frame = getMowerFrame({ progress, elapsedSeconds, viewportWidth:window.innerWidth, mowerWidth });
+        mowerRunner.style.transform = `translate3d(${frame.x}px,0,0)`;
+        mowerRunner.dataset.pose = frame.pose;
+        mowerRunner.dataset.frame = frame.spriteFrame;
+        mowerDirection.style.transform = `scaleX(${frame.facing === 'right' ? 1 : -1})`;
+        const cutBoundary = frame.grassCutProgress * window.innerWidth;
+        mowerCutGrass.style.width = `${cutBoundary}px`;
+        mowerUncutGrass.style.left = `${cutBoundary}px`;
+        mowerUncutGrass.style.backgroundPositionX = `${-(cutBoundary % 256)}px`;
+        requestAnimationFrame(renderMower);
+      };
+      requestAnimationFrame(renderMower);
+    }
   </script>
 </body>
 </html>
