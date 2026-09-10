@@ -12,10 +12,11 @@ const installWeedEaterSprite = () => {
       width:100%;
     }
     .mower-pose { display:none !important; }
-    .mower-scene { height:190px; }
+    .mower-scene { height:220px; }
+    .mower-runner { bottom:-8px; width:280px; }
     @media (max-width:620px) {
-      .mower-scene { height:160px; }
-      .mower-runner { width:190px; }
+      .mower-scene { height:205px; }
+      .mower-runner { bottom:-8px; width:245px; }
     }
     .mower-runner[data-frame="mow-1"] .mower-bob { background-position:0% center; }
     .mower-runner[data-frame="mow-2"] .mower-bob { background-position:33.333% center; }
