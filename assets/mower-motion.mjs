@@ -6,17 +6,17 @@ const installWeedEaterSprite = () => {
   style.textContent = `
     .mower-bob {
       aspect-ratio:180 / 150;
-      background-image:url("assets/weed-eater-onewheel-sprites-v2.png");
+      background-image:url("assets/weed-eater-onewheel-sprites-v3.png");
       background-repeat:no-repeat;
       background-size:400% 100%;
       width:100%;
     }
     .mower-pose { display:none !important; }
-    .mower-scene { height:220px; }
-    .mower-runner { bottom:-8px; width:280px; }
+    .mower-scene { height:245px; }
+    .mower-runner { bottom:0; width:280px; }
     @media (max-width:620px) {
-      .mower-scene { height:205px; }
-      .mower-runner { bottom:-8px; width:245px; }
+      .mower-scene { height:215px; }
+      .mower-runner { bottom:0; width:245px; }
     }
     .mower-runner[data-frame="mow-1"] .mower-bob { background-position:0% center; }
     .mower-runner[data-frame="mow-2"] .mower-bob { background-position:33.333% center; }
@@ -48,9 +48,9 @@ export function getMowerFrame({ progress, elapsedSeconds = 0, viewportWidth, mow
     x = rightExit + (start - rightExit) * ((point - .49) / .46);
   }
 
-  // The repacked sprite places the spinning trimmer head at about 72% of its frame width.
-  // Keep the tall-to-cut grass transition locked to that point while he rides across the lawn.
-  const trimmerHeadX = x + mowerWidth * .72;
+  // The tight sprite sheet is cropped to the rider and tool. The spinning trimmer
+  // head sits at roughly 79% of the frame width, so the grass boundary meets the head.
+  const trimmerHeadX = x + mowerWidth * .79;
   const grassCutProgress = point < .43 ? trimmerHeadX / viewportWidth : 1;
   const spriteFrame = `mow-${Math.floor(Math.max(0, elapsedSeconds) * 6) % 4 + 1}`;
   const round = value => Math.round(Math.min(1, Math.max(0, value)) * 1000) / 1000;
