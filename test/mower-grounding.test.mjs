@@ -4,7 +4,7 @@ import test from 'node:test';
 
 const motion = await readFile(new URL('../assets/mower-motion.mjs', import.meta.url), 'utf8');
 
-test('seats the OneWheel on the grass and restores the rider scale', () => {
-  assert.match(motion, /\.mower-runner\s*\{[^}]*bottom:-3px;[^}]*width:245px;/s);
-  assert.match(motion, /@media \(max-width:620px\)[\s\S]*?\.mower-runner\s*\{[^}]*bottom:-2px;[^}]*width:170px;/s);
+test('seats the OneWheel into the grass and keeps the weed-eater rider prominent', () => {
+  assert.match(motion, /\.mower-runner\s*\{[^}]*bottom:-8px;[^}]*width:280px;/s);
+  assert.match(motion, /@media \(max-width:620px\)[\s\S]*?\.mower-runner\s*\{[^}]*bottom:-8px;[^}]*width:245px;/s);
 });
