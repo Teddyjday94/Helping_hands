@@ -18,24 +18,17 @@ export function getMowerFrame({ progress, elapsedSeconds = 0, viewportWidth, mow
     x = rightExit + (start - rightExit) * ((point - .49) / .46);
   }
 
-  const mowerDeckCenter = x + mowerWidth * .82;
-  const grassCutProgress = point < .43 ? mowerDeckCenter / viewportWidth : 1;
-  const mowingFrame = `mow-${Math.floor(Math.max(0, elapsedSeconds) * 6) % 4 + 1}`;
-  const thumbFrames = ['thumb-start', 'thumb-1', 'thumb-mid', 'thumb-2', 'thumb-full', 'thumb-2', 'thumb-mid', 'thumb-1', 'thumb-start'];
-  const isThumbsUp = point >= .72 && point < .76;
-  let spriteFrame = mowingFrame;
-
-  if (isThumbsUp) {
-    const thumbProgress = (point - .72) / .04;
-    spriteFrame = thumbFrames[Math.min(thumbFrames.length - 1, Math.floor(thumbProgress * thumbFrames.length))];
-  }
-
+  // The weed-eater sprite places the spinning trimmer head at about 61% of its canvas width.
+  // Tie the cut boundary to that head so tall grass changes exactly where the line is trimming.
+  const trimmerHeadX = x + mowerWidth * .61;
+  const grassCutProgress = point < .43 ? trimmerHeadX / viewportWidth : 1;
+  const spriteFrame = `mow-${Math.floor(Math.max(0, elapsedSeconds) * 6) % 4 + 1}`;
   const round = value => Math.round(Math.min(1, Math.max(0, value)) * 1000) / 1000;
 
   return {
     x: Math.round(x * 1000) / 1000,
     facing: point < .49 ? 'right' : 'left',
-    pose: isThumbsUp ? 'thumbs-up' : 'cutting',
+    pose: 'cutting',
     spriteFrame,
     grassCutProgress: round(grassCutProgress),
   };
