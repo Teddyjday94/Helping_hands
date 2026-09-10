@@ -23,7 +23,7 @@ test('locks the grass cut boundary to the weed-eater head', () => {
     facing: 'right',
     pose: 'cutting',
     spriteFrame: 'mow-1',
-    grassCutProgress: 0.522,
+    grassCutProgress: 0.544,
   });
 });
 
