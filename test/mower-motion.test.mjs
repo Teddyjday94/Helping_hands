@@ -3,31 +3,31 @@ import test from 'node:test';
 
 import { getMowerFrame, getMowerMotionState } from '../assets/mower-motion.mjs';
 
-test('keeps the mower parked when reduced motion is requested', () => {
+test('keeps the weed eater parked when reduced motion is requested', () => {
   assert.deepEqual(getMowerMotionState({ reducedMotion: true }), {
     mode: 'parked',
     durationSeconds: 0,
   });
 });
 
-test('runs a relaxed mowing loop for the standard experience', () => {
+test('runs a relaxed weed-eating loop for the standard experience', () => {
   assert.deepEqual(getMowerMotionState({ reducedMotion: false }), {
     mode: 'mowing',
     durationSeconds: 32,
   });
 });
 
-test('locks the grass cut boundary between the mower deck sections', () => {
+test('locks the grass cut boundary to the weed-eater head', () => {
   assert.deepEqual(getMowerFrame({ progress: 0.24, elapsedSeconds: 8, viewportWidth: 1000, mowerWidth: 200 }), {
     x: 400,
     facing: 'right',
     pose: 'cutting',
     spriteFrame: 'mow-1',
-    grassCutProgress: 0.564,
+    grassCutProgress: 0.522,
   });
 });
 
-test('drives completely off the right edge before turning around', () => {
+test('rides completely off the right edge before turning around', () => {
   assert.deepEqual(getMowerFrame({ progress: 0.43, elapsedSeconds: 13.76, viewportWidth: 1000, mowerWidth: 200 }), {
     x: 1016,
     facing: 'right',
@@ -45,7 +45,7 @@ test('drives completely off the right edge before turning around', () => {
   });
 });
 
-test('cycles through four distinct mowing frames while the character travels', () => {
+test('cycles through four distinct weed-eating frames while the character travels', () => {
   const frames = [
     [0, 'mow-1'],
     [0.18, 'mow-2'],
@@ -62,31 +62,16 @@ test('cycles through four distinct mowing frames while the character travels', (
   }
 });
 
-test('plays a quick nine-step thumbs-up while moving back to the left', () => {
-  const frames = [
-    [0.722, 'thumb-start'],
-    [0.7265, 'thumb-1'],
-    [0.731, 'thumb-mid'],
-    [0.7355, 'thumb-2'],
-    [0.74, 'thumb-full'],
-    [0.7445, 'thumb-2'],
-    [0.749, 'thumb-mid'],
-    [0.7535, 'thumb-1'],
-    [0.758, 'thumb-start'],
-  ];
-
-  for (const [progress, spriteFrame] of frames) {
-    const result = getMowerFrame({ progress, elapsedSeconds: 0, viewportWidth: 1000, mowerWidth: 200 });
+test('keeps weed-eating continuously while riding back to the left', () => {
+  for (const progress of [0.55, 0.72, 0.74, 0.76, 0.9]) {
+    const result = getMowerFrame({ progress, elapsedSeconds: progress * 32, viewportWidth: 1000, mowerWidth: 200 });
     assert.equal(result.facing, 'left');
-    assert.equal(result.pose, 'thumbs-up');
-    assert.equal(result.spriteFrame, spriteFrame);
+    assert.equal(result.pose, 'cutting');
+    assert.match(result.spriteFrame, /^mow-[1-4]$/);
   }
-
-  assert.equal(getMowerFrame({ progress: 0.715, elapsedSeconds: 0, viewportWidth: 1000, mowerWidth: 200 }).pose, 'cutting');
-  assert.equal(getMowerFrame({ progress: 0.765, elapsedSeconds: 0, viewportWidth: 1000, mowerWidth: 200 }).pose, 'cutting');
 });
 
-test('keeps the lawn fully cut while the mower returns left', () => {
+test('keeps the lawn fully cut while the weed eater returns left', () => {
   const result = getMowerFrame({ progress: 0.8, elapsedSeconds: 25.6, viewportWidth: 1000, mowerWidth: 200 });
   assert.equal(result.facing, 'left');
   assert.equal(result.grassCutProgress, 1);
