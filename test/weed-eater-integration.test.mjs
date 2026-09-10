@@ -14,3 +14,9 @@ test('maps each mowing frame to a distinct quarter of the weed-eater sprite shee
     assert.ok(motionSource.includes(`background-position:${offset} center`));
   }
 });
+
+test('uses tight frame geometry and a larger grounded mobile footprint', () => {
+  assert.match(motionSource, /aspect-ratio:180 \/ 150/);
+  assert.match(motionSource, /\.mower-scene \{ height:190px; \}/);
+  assert.match(motionSource, /@media \(max-width:620px\)[\s\S]*\.mower-scene \{ height:160px; \}[\s\S]*\.mower-runner \{ width:190px; \}/);
+});
