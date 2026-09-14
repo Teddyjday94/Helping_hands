@@ -22,11 +22,49 @@ const installWeedEaterSprite = () => {
     .mower-runner[data-frame="mow-2"] .mower-bob { background-position:33.333% center; }
     .mower-runner[data-frame="mow-3"] .mower-bob { background-position:66.667% center; }
     .mower-runner[data-frame="mow-4"] .mower-bob { background-position:100% center; }
+
+    .video-card {
+      display:flex;
+      flex-direction:column;
+    }
+    .video-card > video {
+      aspect-ratio:auto !important;
+      background:#000;
+      display:block;
+      height:auto !important;
+      max-width:100%;
+      object-fit:contain !important;
+      width:100%;
+    }
+    .video-card > video.is-portrait-video {
+      align-self:center;
+      width:min(100%, 420px);
+    }
+    @media (max-width:620px) {
+      .video-card > video.is-portrait-video {
+        width:min(100%, 340px);
+      }
+    }
   `;
   document.head.append(style);
 };
 
+const installWorkVideoSizing = () => {
+  if (typeof document === 'undefined') return;
+
+  document.querySelectorAll('.video-card > video').forEach(video => {
+    const syncOrientation = () => {
+      if (!video.videoWidth || !video.videoHeight) return;
+      video.classList.toggle('is-portrait-video', video.videoHeight > video.videoWidth);
+    };
+
+    if (video.readyState >= 1) syncOrientation();
+    video.addEventListener('loadedmetadata', syncOrientation, { once:true });
+  });
+};
+
 installWeedEaterSprite();
+installWorkVideoSizing();
 
 export function getMowerMotionState({ reducedMotion }) {
   return reducedMotion
