@@ -482,6 +482,62 @@
       .section::after { animation:none; transform:none; }
       .service-card:hover,.comparison:hover,.person:hover,.video-card:hover { transform:none; }
     }
+
+    /* Requested visual corrections: slider, hero alignment, orange gallery */
+    .comparison-range {
+      -webkit-appearance:none;
+      appearance:none;
+      background:transparent;
+      border:0;
+      border-radius:0;
+      box-shadow:none;
+    }
+    .comparison-range::-webkit-slider-runnable-track {
+      -webkit-appearance:none;
+      appearance:none;
+      background:transparent;
+      border:0;
+      box-shadow:none;
+      height:100%;
+    }
+    .comparison-range::-webkit-slider-thumb {
+      -webkit-appearance:none;
+      appearance:none;
+      background:transparent;
+      border:0;
+      border-radius:0;
+      box-shadow:none;
+      height:50px;
+      width:50px;
+    }
+    .comparison-range::-moz-range-track {
+      background:transparent;
+      border:0;
+      box-shadow:none;
+    }
+    .comparison-range::-moz-range-thumb {
+      appearance:none;
+      background:transparent;
+      border:0;
+      border-radius:0;
+      box-shadow:none;
+      height:50px;
+      width:50px;
+    }
+    .hero-photo,.hero-note,.hero-badge { transform:none; }
+    .gallery figure,
+    .gallery figure:nth-child(2),
+    .gallery figure:nth-child(4) {
+      border:2px solid rgba(255,122,47,.94);
+      box-shadow:0 0 8px rgba(255,122,47,.72),0 0 26px rgba(255,122,47,.38),0 18px 42px rgba(0,0,0,.34);
+      transform:none;
+    }
+    .gallery figure:hover,
+    .gallery figure:nth-child(2):hover,
+    .gallery figure:nth-child(4):hover {
+      border-color:#ff9a55;
+      box-shadow:0 0 12px rgba(255,122,47,.95),0 0 36px rgba(255,122,47,.55),0 22px 48px rgba(0,0,0,.4);
+    }
   </style>
 </head>
 <body>
