@@ -84,7 +84,7 @@
     .comparison-stage > .comparison-after { clip-path:inset(0 calc(100% - var(--reveal)) 0 0); }
     .comparison-front .comparison-stage > img { object-position:center 28%; }
     .comparison-divider { background:var(--white); bottom:0; box-shadow:0 0 0 1px rgba(16,39,28,.16),0 0 18px rgba(0,0,0,.22); left:var(--reveal); pointer-events:none; position:absolute; top:0; transform:translateX(-50%); width:3px; z-index:3; }
-    .comparison-divider::after { align-items:center; background:var(--lime); border:3px solid var(--white); border-radius:50%; color:var(--ink); content:"↔"; display:flex; font-size:1.05rem; font-weight:700; height:42px; justify-content:center; left:50%; position:absolute; top:50%; transform:translate(-50%,-50%); width:42px; }
+    .comparison-divider::after { background-color:var(--lime); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2309251a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 7 4 12l4 5'/%3E%3Cpath d='M16 7l4 5-4 5'/%3E%3C/svg%3E"); background-position:center; background-repeat:no-repeat; background-size:20px 20px; border:3px solid var(--white); border-radius:50%; content:""; height:42px; left:50%; position:absolute; top:50%; transform:translate(-50%,-50%); width:42px; }
     .comparison-range { appearance:none; background:transparent; cursor:ew-resize; inset:0; margin:0; position:absolute; width:100%; z-index:5; }
     .comparison-range:focus-visible { outline:3px solid var(--lime); outline-offset:-5px; }
     .comparison-range::-webkit-slider-runnable-track { background:transparent; }
@@ -418,9 +418,12 @@
       box-shadow:0 0 7px var(--neon-lime),0 0 20px rgba(217,255,87,.6);
     }
     .comparison-divider::after {
-      background:var(--night);
+      background-color:var(--night);
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d9ff57' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 7 4 12l4 5'/%3E%3Cpath d='M16 7l4 5-4 5'/%3E%3C/svg%3E");
+      background-position:center;
+      background-repeat:no-repeat;
+      background-size:20px 20px;
       border-color:var(--neon-lime);
-      color:var(--neon-lime);
       box-shadow:0 0 18px rgba(217,255,87,.58);
     }
     .watch {
