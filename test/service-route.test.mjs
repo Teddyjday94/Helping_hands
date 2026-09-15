@@ -20,3 +20,12 @@ test("service cards use a clean two by two desktop grid with a single-column mob
   assert.match(SERVICE_ROUTE_STYLES, /@media \(max-width:680px\)[\s\S]*grid-template-columns:1fr/);
   assert.doesNotMatch(SERVICE_ROUTE_STYLES, /stroke-dashoffset|stroke-dasharray|repeating-linear-gradient|repeat\(12/);
 });
+
+test("mowing and trimming cards use literal equipment icons", () => {
+  assert.match(SERVICE_ROUTE_MARKUP, /data-service-icon="mower"/);
+  assert.match(SERVICE_ROUTE_MARKUP, /class="mower-wheel"/);
+  assert.match(SERVICE_ROUTE_MARKUP, /class="mower-handle"/);
+  assert.match(SERVICE_ROUTE_MARKUP, /data-service-icon="trimmer"/);
+  assert.match(SERVICE_ROUTE_MARKUP, /class="trimmer-shaft"/);
+  assert.match(SERVICE_ROUTE_MARKUP, /class="trimmer-head"/);
+});
