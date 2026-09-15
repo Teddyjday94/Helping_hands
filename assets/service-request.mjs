@@ -1,5 +1,6 @@
 export { SERVICE_ROUTE_MARKUP, SERVICE_ROUTE_STYLES, initServiceRoute } from "./service-route.mjs";
 import "./service-route.mjs";
+import "./site-motion.mjs";
 
 export const FORM_ENDPOINT = "https://formsubmit.co/ajax/thomasdbiz26@gmail.com";
 
