@@ -1,5 +1,19 @@
 export const FORM_ENDPOINT = "https://formsubmit.co/ajax/thomasdbiz26@gmail.com";
 
+function applyComparisonTitleContrast(doc = document) {
+  doc.querySelectorAll(".comparison-copy h3").forEach((heading) => {
+    heading.style.setProperty("color", "var(--ink, #09251a)", "important");
+  });
+}
+
+if (typeof document !== "undefined") {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => applyComparisonTitleContrast(document), { once: true });
+  } else {
+    applyComparisonTitleContrast(document);
+  }
+}
+
 export function buildServicePayload(values) {
   return {
     _subject: "New Helping Hands service request",
