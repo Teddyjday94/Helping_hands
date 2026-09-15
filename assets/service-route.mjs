@@ -3,7 +3,14 @@ export const SERVICE_ROUTE_MARKUP = `
   <article class="route-stop stop-mow">
     <div class="route-stop-top">
       <span class="route-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M4 15h10l-1.4-5H8.3L7 15"></path><circle cx="7" cy="17.4" r="2"></circle><circle cx="16" cy="17.4" r="2"></circle><path d="M13 9l3-3 4 5"></path></svg>
+        <svg data-service-icon="mower" viewBox="0 0 48 48">
+          <circle class="mower-wheel" cx="13.5" cy="35" r="5"></circle>
+          <circle class="mower-wheel" cx="31.5" cy="35" r="5"></circle>
+          <path d="M8.5 30h27l-3.5-11H17l-4 5H9.5Z"></path>
+          <path d="M18.5 18.5h10.5l2 6H15.5Z"></path>
+          <path class="mower-handle" d="M31.5 20 38 8h6"></path>
+          <path class="mower-handle" d="M37 9.5 43 16"></path>
+        </svg>
       </span>
       <span class="route-pill">Weekly / bi-weekly</span>
     </div>
@@ -15,7 +22,16 @@ export const SERVICE_ROUTE_MARKUP = `
   <article class="route-stop stop-edge">
     <div class="route-stop-top">
       <span class="route-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M5 18h14"></path><path d="M8 16l3.5-8"></path><path d="M11 8l6 6"></path><path d="M16 14l1.5 4"></path><path d="M4 20h7"></path></svg>
+        <svg data-service-icon="trimmer" viewBox="0 0 48 48">
+          <path d="M7 9.5h12.5l5.5 6-5.5 5.5H9l-3-4.5Z"></path>
+          <path class="trimmer-shaft" d="M21 18.5 38 36"></path>
+          <path d="M24 22.5 31 18"></path>
+          <path d="M27.5 25.5 34 21.5"></path>
+          <path class="trimmer-head" d="M35 37h9"></path>
+          <path class="trimmer-head" d="M39 34.5 36.5 39.5"></path>
+          <path d="M34.5 40c3.5 1.8 7 1.8 10.5 0"></path>
+          <path d="M42 35.5 45 32"></path>
+        </svg>
       </span>
       <span class="route-pill">Crisp finish</span>
     </div>
@@ -113,6 +129,12 @@ export const SERVICE_ROUTE_STYLES = `
   stroke-linecap:round;
   stroke-linejoin:round;
   filter:drop-shadow(0 0 6px rgba(217,255,87,.3));
+}
+.route-icon svg[data-service-icon="mower"],
+.route-icon svg[data-service-icon="trimmer"] {
+  width:35px;
+  height:35px;
+  stroke-width:2.15;
 }
 .route-pill {
   display:inline-flex;
