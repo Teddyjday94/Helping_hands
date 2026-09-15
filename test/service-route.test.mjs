@@ -12,6 +12,7 @@ test("service route replaces numbered cards with four lawn-care stops", () => {
   assert.match(SERVICE_ROUTE_MARKUP, />Yard cleanup</);
   assert.match(SERVICE_ROUTE_MARKUP, />Recurring care</);
   assert.doesNotMatch(SERVICE_ROUTE_MARKUP, />0[1-4]</);
+  assert.doesNotMatch(SERVICE_ROUTE_MARKUP, /route-stop[^\"]*reveal/);
 });
 
 test("service route includes an organic path and motion-safe responsive styling", () => {
